@@ -26,8 +26,12 @@ const Home = (props) => {
   );
 };
 
+const dev = process.env.NODE_ENV != "production";
+
 Home.getInitialProps = async () => {
-  const fetched = await fetch("http://localhost:5000/");
+  const fetched = await fetch(
+    dev ? "http://localhost:5000/" : "https://isomorpic-blog-api.herokuapp.com/"
+  );
   const data = await fetched.json();
   return data;
 };
